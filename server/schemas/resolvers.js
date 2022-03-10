@@ -1,6 +1,8 @@
+const Book = require('../models/Book');
+
 const resolvers = {
     Query: {
-      helloWorld: () => {
+      books: () => {
         return 'Hello world!';
       }
     }
