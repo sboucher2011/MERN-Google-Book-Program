@@ -18,11 +18,21 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 5
-    }
+    },
+    savedBooks: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Book'
+        }
+    ]
 });
 
 userSchema.methods.isCorrectPassword = async function(password) {
     return bcrypt.compare(password, this.password);
 };
+
+userSchema.virtual('bookCount').get(function() {
+    return this.savedBooks.length;
+});
 
 module.exports = new mongoose.model('User', userSchema)
