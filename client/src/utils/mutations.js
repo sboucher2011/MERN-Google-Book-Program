@@ -25,12 +25,15 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_BOOK = gql`
-mutation addBook($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+mutation addBook($username: String!, $bookID: String!) {
+    addSavedBook($username: String!, $bookID: String!) {
       _id
-      thoughtText
-      createdAt
-      username
+      bookID
+      title
+      description
+      authors
+      link
+      image
     }
   }
 `;
